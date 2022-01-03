@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel6 Assignment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Fill Personal Details below</h1>
+    <form action="thankyou.html" name="myForm" id="form" method="get">
+        <div class="formdesign" id="name">
+            Fullname: <input type="text" id="fname" name="fname"><small><span class="formmsg" id="namemsg">
+                </span></small>
+        </div>
+        <div class="formdesign" id="email">
+            Email: <input type="email" id="femail" name="femail"> <small><span class="formmsg" id="emailmsg">
+                </span></small>
+        </div>
+        <div class="formdesign" id="phone">
+            Phone No.: <input type="tel" id="fphone" name="phone" maxlength="18"> <small> <span class="formmsg"
+                    id="phoneoperator"> </span><span class="formmsg" id="phonecircle"></span></small>
+        </div>
+        <input type="submit" class="button" value="Submit" onclick="handleSubmit()">
+    </form>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
