@@ -2,8 +2,13 @@ window.addEventListener('load', () => {
     const name = sessionStorage.getItem('NAME');
     const phone = sessionStorage.getItem('PHONE');
 
+    // const name = localStorage.getItem('NAME');
+    // const phone = localStorage.getItem('PHONE');
+
     document.getElementById('firstname').innerHTML = name;
     document.getElementById('phone').innerHTML = phone;
+
+
 })
 
 console.log(generateOtp());
@@ -30,5 +35,5 @@ function generateOtp(){
     for(let i=0; i<4; i++){
         OTP += num[Math.floor(Math.random()*10)];
     }
-    return OTP;
+    console.log(OTP);
 }

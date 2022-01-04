@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="thankyou.css">
     <title>Thank You</title>
 </head>
+
 <body>
 
     <div class="thankyou-container">
         <h3>Thank you,</h3>
         <br>
         <p>Dear <span id="firstname"></span>,
-            Thank you for your inquiry. A 4 digit verification number has been sent to your registered phone number: <b><span id="phone"></span></b>. Please enter in the following box and submit for confirmation:</p>
+            Thank you for your inquiry. A 4 digit verification number has been sent to your registered phone number:
+            <b><span id="phone"></span></b>. Please enter in the following box and submit for confirmation:</p>
+        <form action="success.html" id="submitotp" method="get">
+            <div class="otp-form">
+                Enter OTP sent to your mobile number
+                <input type="text" id="otp" name="otp">
+            </div>
+            <input type="submit" class="button" value="Validate" onclick="handleSubmit()">
+        </form>
     </div>
-    <form action="success.html" id="submitotp" method="get">
-        <div class="otp-form">
-            Enter OTP sent to your mobile number
-            <input type="text" id="otp" name="otp">
-        </div>
-        <input type="submit" class="button" value="Validate" onclick="handleSubmit()">
-    </form>
     <script src="./thankyou.js"></script>
 </body>
+
 </html>

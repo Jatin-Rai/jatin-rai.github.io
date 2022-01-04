@@ -1,53 +1,59 @@
-
-const fullname = document.getElementById('fname');
-const email = document.getElementById('femail');
-const phone = document.getElementById('fphone');
 const form = document.getElementById('form');
+const fname = document.getElementById('name');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
 
-//A function to set message beside the input box
-function setMsg(id, msg) {
+//validating name
+fname.addEventListener('blur', () => {
+    checkNameInput();
+})
 
-    let msgId = document.getElementById(id);
+function checkNameInput() {
+    const nameValue = fname.value.trim();
+    let check = true;
 
-    if (isNaN(id.value)) {
-        msgId.textContent = msg;
+    let regName = /^[a-zA-Z]{2,20}\s[a-zA-Z]{2,20}$/;
+
+    if (nameValue === "") {
+        setError(fname, "cannot be empty");
+        check = false;
+    } else if (!regName.test(nameValue)) {
+        setError(fname, "invalid name");
+        check = false
     } else {
-        msgId.textContent = "";
+        setSuccess(fname);
+        check = true;
     }
+    return check;
 }
 
-// Event listener for the fullname input which checks the correctness of the name input by the user
-fullname.addEventListener('blur', () => {
-
-    let regexName = /^[a-zA-Z]{2,20}\s[a-zA-Z]{2,20}$/;
-    let nameStr = fullname.value;
-
-    if (nameStr == "") {
-        setMsg('namemsg', "*this field cannot be empty");
-    } else if (regexName.test(nameStr)) {
-        setMsg('namemsg', "");
-    } else if (!regexName.test(nameStr)) {
-        setMsg('namemsg', "*your first name and last name must contain at least 2 letters each.")
-    } else {
-        setMsg('namemsg', "");
-    }
-})
-
-//Event listener to check if the email input field is empty or not
+//validating email
 email.addEventListener('blur', () => {
-
-    let emailStr = email.value;
-
-    if (emailStr == "") {
-        setMsg('emailmsg', "*email is compulsory");
-    } else {
-        setMsg('emailmsg', "");
-    }
-
+    checkEmailInput();
 })
 
-// An event listener to maintain the input format required for the phone number input field
-phone.addEventListener("keydown", (e) => {
+function checkEmailInput() {
+    const emailValue = email.value.trim();
+
+    let check = true;
+
+    let regEmail = /^[a-z0-9_.A-z]{3,20}\@[a-zA-z]{2,10}\.[a-z]{2,5}$/;
+
+    if (emailValue === "") {
+        setError(email, "cannot be empty");
+        check = false;
+    } else if (!regEmail.test(emailValue)) {
+        setError(email, "invalid email");
+        check = false;
+    } else {
+        setSuccess(email, "");
+        check = true;
+    }
+    return check;
+}
+
+//validating phone number
+phone.addEventListener("keypress", (e) => {
 
     if (e.key === "Backspace" || e.key === "Delete") return;
 
@@ -74,112 +80,204 @@ phone.addEventListener("keydown", (e) => {
     const circle = phone.value.substr(8, 3);
 
     verifyOperator(operator);
+
     verifyCircle(circle);
+
+    checkPhoneInput();
+
 })
 
-function handleSubmit(){
+function checkPhoneInput() {
+    const phoneValue = phone.value.trim();
+    let check = true;
+
+    let regPhone = /^\(\d{3}\)\s-\s\d{3}\s-\s\d{4}$/;
+
+    if (phoneValue === "") {
+        setError(phone, "cannot be empty");
+        check = false;
+    } else if (regPhone.test(phoneValue)) {
+        setSuccess(phone);
+        check = true
+    }
+    return check;
+}
+
+//validating form
+form.addEventListener('submit', (e) => {
     const name = fullname.value;
     const mail = email.value;
     const ph = phone.value;
 
-    sessionStorage.setItem('NAME', name);
-    sessionStorage.setItem('MAIL', mail);
-    sessionStorage.setItem('PHONE', ph);
 
+    if (!checkInputs()) {
+        e.preventDefault()
+    } else {
+        // localStorage.setItem('NAME', name);
+        // localStorage.setItem('MAIL', mail);
+        // localStorage.setItem('PHONE', ph);
+
+        // window.location.href = "thankyou.html";
+
+        sessionStorage.setItem('NAME', name);
+        sessionStorage.setItem('MAIL', mail);
+        sessionStorage.setItem('PHONE', ph);
+    }
+
+})
+
+//checking if all the inputs are correct to proceed
+function checkInputs() {
+    let check = true;
+
+    if (!checkNameInput()) check = false;
+
+    if (!checkEmailInput()) check = false;
+
+    if (!checkPhoneInput()) check = false;
+
+    return check;
 
 }
+
+//error message, success message, and operator and circle
+function setError(input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+
+    small.textContent = message;
+
+    formControl.className = 'form-control error';
+}
+
+function setSuccess(input) {
+    const formControl = input.parentElement;
+
+    formControl.className = 'form-control success';
+}
+
+function setOp(input, message) {
+    const formControl = input.parentElement;
+    const bold = formControl.querySelector('b');
+
+    bold.textContent = message;
+}
+
+function setCir(input, message) {
+    const formControl = input.parentElement;
+    const span = formControl.querySelector('span');
+
+    span.textContent = message;
+}
+
+// //handling submit request
+// function handleSubmit() {
+//     const name = fullname.value;
+//     const mail = email.value;
+//     const ph = phone.value;
+
+//     // localStorage.setItem('NAME', name);
+//     // localStorage.setItem('MAIL', mail);
+//     // localStorage.setItem('PHONE', ph);
+
+//     // window.location.href = "thankyou.html";
+
+//     sessionStorage.setItem('NAME', name);
+//     sessionStorage.setItem('MAIL', mail);
+//     sessionStorage.setItem('PHONE', ph);
+
+// }
 
 //function to check the service operator
 function verifyOperator(operator) {
 
     if (operator >= "621" && operator <= "799") {
-        document.getElementById('phoneoperator').style.color = "black";
-        setMsg('phoneoperator', "Jio, ");
+        setOp(phone, "Jio, ");
     } else if (operator >= "801" && operator <= "920") {
-        document.getElementById('phoneoperator').style.color = "black";
-        setMsg('phoneoperator', "Idea, ")
+        setOp(phone, "Idea, ")
     } else if (operator >= "921" && operator <= "999") {
-        document.getElementById('phoneoperator').style.color = "black";
-        setMsg('phoneoperator', "Vodafone, ");
-    } else {
-        document.getElementById('phoneoperator').style.color = "red";
-        setMsg('phoneoperator', "*invalid");
+        setOp(phone, "Vodafone, ");
+    } else if (operator < 621 || operator > 999) {
+        setError(phone, "");
     }
+
+    return;
 }
 
-//function to check the circle/states in which the operator is functioning
+//function to check the circle/states
 function verifyCircle(circle) {
 
     if (circle == 100) {
-        setMsg('phonecircle', "Andhra Pradesh");
+        setCir(phone, "Andhra Pradesh");
     } if (circle == 110) {
-        setMsg('phonecircle', "Arunachal Pradesh");
+        setCir(phone, "Arunachal Pradesh");
     } if (circle == 120) {
-        setMsg('phonecircle', "Assam");
+        setCir(phone, "Assam");
     } if (circle == 130) {
-        setMsg('phonecircle', "Bihar");
+        setCir(phone, "Bihar");
     } if (circle == 140) {
-        setMsg('phonecircle', "Chhattisgarh");
+        setCir(phone, "Chhattisgarh");
     } if (circle == 150) {
-        setMsg('phonecircle', "Goa");
+        setCir(phone, "Goa");
     } if (circle == 160) {
-        setMsg('phonecircle', "Gujarat");
+        setCir(phone, "Gujarat");
     } if (circle == 170) {
-        setMsg('phonecircle', "Haryana");
+        setCir(phone, "Haryana");
     } if (circle == 180) {
-        setMsg('phonecircle', "Himachal Pradesh");
+        setCir(phone, "Himachal Pradesh");
     } if (circle == 190) {
-        setMsg('phonecircle', "Jharkhand");
+        setCir(phone, "Jharkhand");
     } if (circle == 200) {
-        setMsg('phonecircle', "Karnataka");
+        setCir(phone, "Karnataka");
     } if (circle == 210) {
-        setMsg('phonecircle', "Kerala");
+        setCir(phone, "Kerala");
     } if (circle == 220) {
-        setMsg('phonecircle', "Madhya Pradesh");
+        setCir(phone, "Madhya Pradesh");
     } if (circle == 230) {
-        setMsg('phonecircle', "Maharashtra");
+        setCir(phone, "Maharashtra");
     } if (circle == 240) {
-        setMsg('phonecircle', "Manipur");
+        setCir(phone, "Manipur");
     } if (circle == 250) {
-        setMsg('phonecircle', "Nagaland");
+        setCir(phone, "Nagaland");
     } if (circle == 260) {
-        setMsg('phonecircle', "Odisha");
+        setCir(phone, "Odisha");
     } if (circle == 270) {
-        setMsg('phonecircle', "Punjab");
+        setCir(phone, "Punjab");
     } if (circle == 280) {
-        setMsg('phonecircle', "Rajasthan");
+        setCir(phone, "Rajasthan");
     } if (circle == 290) {
-        setMsg('phonecircle', "Sikkim");
+        setCir(phone, "Sikkim");
     } if (circle == 300) {
-        setMsg('phonecircle', "Tamil Nadu");
+        setCir(phone, "Tamil Nadu");
     } if (circle == 310) {
-        setMsg('phonecircle', "Telangana");
+        setCir(phone, "Telangana");
     } if (circle == 320) {
-        setMsg('phonecircle', "Tripura");
+        setCir(phone, "Tripura");
     } if (circle == 330) {
-        setMsg('phonecircle', "Uttarakhand");
+        setCir(phone, "Uttarakhand");
     } if (circle == 340) {
-        setMsg('phonecircle', "Uttar Pradesh");
+        setCir(phone, "Uttar Pradesh");
     } if (circle == 350) {
-        setMsg('phonecircle', "West Bengal");
+        setCir(phone, "West Bengal");
     } if (circle == 360) {
-        setMsg('phonecircle', "Andaman & Nicobar Islands");
+        setCir(phone, "Andaman");
     } if (circle == 370) {
-        setMsg('phonecircle', "Chandigarh");
+        setCir(phone, "Chandigarh");
     } if (circle == 380) {
-        setMsg('phonecircle', "Dadra & Nagar Haveli and Daman & Diu");
+        setCir(phone, "DamanUT");
     } if (circle == 390) {
-        setMsg('phonecircle', "NCT Delhi");
+        setCir(phone, "NCT Delhi");
     } if (circle == 400) {
-        setMsg('phonecircle', "Jammu & Kashmir");
+        setCir(phone, "J&K");
     } if (circle == 410) {
-        setMsg('phonecircle', "Ladakh");
+        setCir(phone, "Ladakh");
     } if (circle == 420) {
-        setMsg('phonecircle', "Lakshadweep");
+        setCir(phone, "Lakshadweep");
     } if (circle == 430) {
-        setMsg('phonecircle', "Puducherry");
+        setCir(phone, "Puducherry");
     } if (circle == "") {
-        setMsg('phonecircle', "");
+        setCir(phone, "");
     }
+    return;
 }
 
