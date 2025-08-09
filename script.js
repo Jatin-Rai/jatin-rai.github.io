@@ -166,6 +166,11 @@ document.addEventListener('mousemove', (e) => {
 
 // Keyboard shortcuts and easter eggs
 document.addEventListener('keydown', (e) => {
+  try {
+    playHoverSound();
+  } catch (err) {
+    // Ignore if audio is blocked
+  }
   // Konami code for crazy mode
   const konamiCode = [
     'ArrowUp',
@@ -284,6 +289,11 @@ function createColorExplosion(x, y) {
 
 // Click explosion effects
 document.addEventListener('click', (e) => {
+  try {
+    playHoverSound();
+  } catch (err) {
+    // Ignore if audio is blocked
+  }
   createColorExplosion(e.clientX, e.clientY);
 });
 
@@ -299,12 +309,9 @@ window.addEventListener('scroll', () => {
     el.style.transform = `translateY(${scrolled * speed}px)`;
   });
 
-  // Update grid overlay based on scroll
   const gridOverlay = document.querySelector('.grid-overlay');
   if (gridOverlay) {
-    gridOverlay.style.backgroundPosition = `${scrolled * 0.5}px ${
-      scrolled * 0.3
-    }px`;
+    gridOverlay.style.backgroundPosition = `${scrolled * 0.5}px ${scrolled * 0.3}px`;
   }
 });
 
@@ -553,7 +560,7 @@ Ready to experience the future! 🌟
     'initialization-start',
     'initialization-end'
   );
-}); 
+});
 
 // Cleanup on page unload
 window.addEventListener('beforeunload', () => {
