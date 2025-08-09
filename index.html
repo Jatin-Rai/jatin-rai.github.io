@@ -1,128 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jatin Rai - Software Engineer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --text-color: #333;
-            --bg-color: #f8f9fa;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        main {
-            padding: 2rem;
-            max-width: 1000px;
-            margin: auto;
-        }
-        h1 {
-            margin-bottom: 0.5rem;
-            font-size: 2.5rem;
-        }
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-        }
-        #skills {
-            margin-top: 2rem;
-        }
-        #skills ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        #skills li {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 0.7rem 1.2rem;
-            margin: 0.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            transition: transform 0.3s ease;
-        }
-        #skills li:hover {
-            transform: translateY(-3px);
-        }
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .social-icons {
-            margin-top: 1rem;
-        }
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: color 0.3s ease;
-        }
-        .social-icons a:hover {
-            color: var(--primary-color);
-        }
-    </style>
+    <title>Jatin Rai - Digital Architect</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <header>
-        <h1>Jatin Rai</h1>
-        <p>Software Engineer & Frontend Developer</p>
-    </header>
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Hello! I'm Jatin Rai, a passionate Software Engineer specializing in Frontend Development. I love creating user-friendly and efficient web applications using modern technologies and best practices.</p>
-        </section>
-        <section id="skills">
-            <h2>Skills</h2>
-            <ul id="skillsList"></ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Jatin Rai. All rights reserved.</p>
-<!--         <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div> -->
-    </footer>
-    <script>
-        const skills = ['React', 'JavaScript', 'Redux', 'HTML', 'Bootstrap', 'CSS', 'Tailwind CSS', 'Material-UI', 'Next.js', 'TypeScript', 'SASS'];
-        const skillsList = document.getElementById('skillsList');
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
 
-        function displaySkills() {
-            skillsList.innerHTML = '';
-            skills.forEach(skill => {
-                const li = document.createElement('li');
-                li.textContent = skill;
-                skillsList.appendChild(li);
-            });
-        }
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="loader"></div>
+            <div class="loading-text">INITIALIZING MATRIX</div>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+    </div>
 
-        displaySkills();
+    <!-- Background Effects -->
+    <div class="bg-container">
+        <div class="matrix-rain" id="matrixRain"></div>
+        <div class="geometric-shapes" id="geometricShapes"></div>
+        <div class="grid-overlay"></div>
+        <div class="cyber-particles" id="cyberParticles"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#home" data-section="home">HOME</a>
+        <a href="#about" data-section="about">ABOUT</a>
+        <a href="#projects" data-section="projects">PROJECTS</a>
+        <a href="#contact" data-section="contact">CONTACT</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="glitch-text" data-text="JATIN_RAI.EXE">JATIN_RAI.EXE</div>
+            <p class="neon-subtitle">&gt; DIGITAL ARCHITECT ONLINE</p>
+            <p class="hero-description">System initialized. Loading 3+ years of Frontend experience...</p>
+            <a href="#about" class="cta-button" data-section="about">ACCESS MAINFRAME</a>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-text">SCROLL TO EXPLORE</div>
+            <div class="scroll-arrows">
+                <div class="scroll-arrow"></div>
+                <div class="scroll-arrow"></div>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-content">
+            <h2 class="section-title">SYSTEM_INFO</h2>
+            <div class="about-content">
+                <div class="terminal-window">
+                    <div class="terminal-header">ABOUT_JATIN.TXT</div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">> Accessing user profile...</div>
+                        <div class="terminal-line">> Name: Jatin Rai</div>
+                        <div class="terminal-line">> Role: Software Engineer | UI Architect</div>
+                        <div class="terminal-line">> Experience: 3+ years crafting digital experiences</div>
+                        <div class="terminal-line">> Mission: Creating intuitive, high-performing applications</div>
+                        <div class="terminal-line">> Status: Ready to deploy innovative solutions</div>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon">⚡</span>
+                    <div class="skill-name">FRONTEND_CORE</div>
+                    <div class="skill-description">React | Vue | HTML5 | CSS3 | JavaScript ES6+ | TypeScript
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🚀</span>
+                    <div class="skill-name">PERFORMANCE_OPT</div>
+                    <div class="skill-description">Webpack | Vite | Core Web Vitals | Lighthouse | Bundle Optimization
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">📱</span>
+                    <div class="skill-name">RESPONSIVE_UI</div>
+                    <div class="skill-description">Mobile-First | PWA | Accessibility | Cross-Browser Compatibility
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🔧</span>
+                    <div class="skill-name">DEV_TOOLS</div>
+                    <div class="skill-description">Node.js | Git | Docker | CI/CD | Testing | Deployment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="section-content">
+            <h2 class="section-title">PROJECT_DATABASE</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3 class="project-title">EV_ANALYTICS.APP</h3>
+                        <p class="project-description">
+                            Advanced dashboard system for Electric Vehicle market analysis. Features real-time data
+                            visualization, predictive analytics, and interactive charts for comprehensive EV adoption
+                            insights.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">WebGL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">DEMO</a>
+                            <a href="#" class="project-link">SOURCE</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3 class="project-title">NEURAL_INTERFACE</h3>
+                        <p class="project-description">
+                            High-performance web platform with AI-powered interactions, dynamic animations,
+                            and seamless user experience across all devices with advanced gesture controls.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">GSAP</span>
+                            <span class="tech-tag">WebAssembly</span>
+                            <span class="tech-tag">Three.js</span>
+                            <span class="tech-tag">PWA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">DEMO</a>
+                            <a href="#" class="project-link">SOURCE</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🎮</div>
+                    <div class="project-content">
+                        <h3 class="project-title">COMPONENT_MATRIX</h3>
+                        <p class="project-description">
+                            Next-gen UI component library with holographic interfaces, quantum animations,
+                            and adaptive design systems for futuristic web applications.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Styled-Components</span>
+                            <span class="tech-tag">Framer Motion</span>
+                            <span class="tech-tag">Storybook</span>
+                            <span class="tech-tag">WebXR</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">DEMO</a>
+                            <a href="#" class="project-link">SOURCE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-content">
+            <h2 class="section-title">CONNECT_PROTOCOL</h2>
+            <div class="contact-content">
+                <div class="terminal-window">
+                    <div class="terminal-header">ESTABLISHING CONNECTION...</div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">> Initiating communication protocols...</div>
+                        <div class="terminal-line">> Ready to receive transmissions</div>
+                        <div class="terminal-line">> All channels open for collaboration</div>
+                    </div>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span class="contact-icon">📡</span>
+                        <div class="contact-title">EMAIL.SRV</div>
+                        <a href="mailto:jatinrai258@gmail.com" class="contact-link">INITIATE_TRANSMISSION</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🔗</span>
+                        <div class="contact-title">LINKEDIN.NET</div>
+                        <a href="https://www.linkedin.com/in/jatinrai96/" target="_blank" class="contact-link">Connect
+                            Protocol</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">⚡</span>
+                        <div class="contact-title">GITHUB.SYS</div>
+                        <a href="https://github.com/Jatin-Rai" target="_blank" class="contact-link">Source Access</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🐦</span>
+                        <div class="contact-title">TWITTER.APP</div>
+                        <a href="https://x.com/jatin_j_rai" target="_blank" class="contact-link">Data Stream</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📷</span>
+                        <div class="contact-title">INSTAGRAM.APP</div>
+                        <a href="https://www.instagram.com/jatin.j.rai/" target="_blank" class="contact-link">Photo
+                            Stream</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./script.js">
+
     </script>
 </body>
+
 </html>
