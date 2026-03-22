@@ -1,39 +1,73 @@
-# Jatin Rai - Modern Frontend Developer Portfolio
+# React + TypeScript + Vite
 
-A striking, premium, and highly responsive personal portfolio website built with pure semantic HTML5, sophisticated CSS3 architectures, and native Vanilla JavaScript. Designed to elegantly showcase frontend engineering capabilities, UI/UX centricity, and scalable project architectures without relying on heavy frontend frameworks.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🚀 Live Demo
-[jatin-rai.github.io](https://jatin-rai.github.io)
+Currently, two official plugins are available:
 
-## ✨ Key Features
-- **Ultra-Modern UI/UX:** Built with a profound focus on aesthetics, featuring frosted glassmorphism overlays, multi-layered radial gradients, and fluid typography scaling.
-- **Hardware-Accelerated Animations:** Smooth 60FPS scroll reveals, floating micro-interactions, off-canvas navigation transformations, and morphed geometric background animations.
-- **Responsive "Mobile-First" Architecture:** Impeccably adapts to any device viewport with tailored CSS Grid bento layouts and intelligent CSS Clamps for infinitely fluid typography and spacing.
-- **Bespoke Scroll Engine:** Replaces janky native scrolling with a custom `requestAnimationFrame` JavaScript easing engine for buttery smooth, fixed-duration section navigation.
-- **Accessibility:** Meticulously calculated contrast ratios, aria-labels, semantic structural elements, and pure CSS `:focus-visible` ring indicators for keyboard navigation.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## 🛠 Tech Stack
-- **Structure:** Semantic HTML5
-- **Styling:** Advanced Vanilla CSS3 (Variables, Flexbox, CSS Grid, Math Functions, Animations)
-- **Logic & Interactions:** Vanilla JavaScript (ES6+)
-- **Icons:** Phosphor Icons Complete Library
-- **Typography:** Inter Sans-Serif via Google Fonts
+## React Compiler
 
-## 📦 Project Highlights
-The portfolio dynamically integrates interactive Bento-grid cards highlighting my core open-source repositories:
-1. **Member Locator:** Mapbox GL & Algolia Spatial Search integration.
-2. **EV Analytics Dashboard:** Enterprise Recharts data visualization.
-3. **Rick & Morty Wiki:** Complex external REST API pagination & filtering.
-4. **React Pokédex Engine:** Advanced local device bookmarking & Redux Toolkit state management.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 📂 Local Deployment
-No complicated node dependencies are required to run this portfolio! You can simply clone the repository and open the `index.html` file in your preferred browser, or use a tool like VSCode Live Server.
-```bash
-git clone https://github.com/Jatin-Rai/jatin-rai.github.io.git
-cd jatin-rai.github.io
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## ✉️ Contact
-Feel free to reach out to me via the automated contact form on the website or directly at [jatinrai258@gmail.com](mailto:jatinrai258@gmail.com).
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-*© Jatin Rai. All Rights Reserved.*
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
