@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# Jatin Rai – Frontend Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A highly interactive, performance-optimized, and visually stunning single-page React portfolio showcasing modern web development, UI/UX design architectures, and fluid animations.
 
-Currently, two official plugins are available:
+## ✨ Key Features
+- **Premium Fluid Animations:** Built using `framer-motion` to handle complex timeline physics, cinematic spring load entrances, and continuous liquid surface tension geometry.
+- **Glassmorphism & Advanced UI:** Integrates premium visual paradigms including frosted glass overlays (`backdrop-blur`), 3D interactive layout masks, and dynamic grid effects.
+- **Smooth SPA Navigation:** Powered by `react-scroll` to handle highly accurate viewport intersection telemetry without manipulating the browser routing stack. 
+- **Automated CI/CD Pipeline:** Fully configured with `gh-pages` to compile and deploy to GitHub Pages automatically via a single terminal command.
+- **Strictly Typed & Lightning Fast:** Developed entirely in TypeScript with `next-gen` React 19 capabilities, bundled exclusively by Vite on a TailwindCSS v4 JIT engine.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Tech Stack
+- **Framework:** React 19 + TypeScript
+- **Bundler/Dev Environment:** Vite
+- **Styling:** Tailwind CSS (v4)
+- **Physics & Motion Engine:** Framer Motion
+- **Iconography:** Lucide React
+- **Scroll Telemetry:** react-scroll
+- **Deployment Hub:** GitHub Pages
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Getting Started
 
-## Expanding the ESLint configuration
+To run this portfolio locally on your machine, clone the repository and follow these short commands.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+You must have a recent version of [Node.js](https://nodejs.org/en) installed on your system.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
+```bash
+# 1. Clone the repository
+git clone https://github.com/YourUsername/jatin-rai.github.io.git
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 2. Enter the working directory
+cd jatin-rai.github.io
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Install all dependencies
+npm install
+
+# 4. Spin up the Vite development server
+npm run dev
 ```
+Open **http://localhost:5173** in your browser to view the application in its raw, hot-module-reloading state.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🌍 Pushing to Production (GitHub Pages)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This project has been architecturally wired to push directly to GitHub Pages. You do **not** need to manually move files around.
+
+When you finish making edits and want to drop your newest code onto the internet, simply execute:
+```bash
+npm run deploy
 ```
+*(This command automatically builds a minified production `dist/` envelope and executes a direct push to the dedicated `gh-pages` branch).*
+
+---
+Designed & built by [Jatin Rai](https://github.com/jatin-rai).
