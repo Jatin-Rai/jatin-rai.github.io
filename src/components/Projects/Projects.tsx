@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { projects, projectIconMap } from "../data";
+import { projects, projectIconMap } from "../../data";
 import { useState } from "react";
 
 export default function Projects() {

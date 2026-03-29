@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navLinks } from "../data";
+import { navLinks } from "../../data";
 import { Link } from "react-scroll";
 
 export default function Navbar() {

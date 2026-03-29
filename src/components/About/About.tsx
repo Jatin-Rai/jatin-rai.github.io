@@ -1,7 +1,7 @@
-import resumePdf from "../assets/docs/jatinrai-resume-20-03-2026.pdf";
+import resumePdf from "../../assets/docs/jatinrai-resume-20-03-2026.pdf";
 import { Download } from "lucide-react";
-import { aboutData } from "../data";
-import { AnimatedButton } from "./ui/animated-button";
+import { aboutData } from "../../data";
+import { AnimatedButton } from "../ui/animated-button";
 
 export default function About() {
   return (

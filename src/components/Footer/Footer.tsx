@@ -1,4 +1,4 @@
-import { socialLinks } from "../data";
+import { socialLinks } from "../../data";
 
 export default function Footer() {
   return (

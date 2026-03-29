@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Mail, ArrowDown } from "lucide-react";
 import { Link } from "react-scroll";
-import { socialLinks, heroData } from "../data";
-import { Spotlight } from "./ui/spotlight";
-import { AnimatedButton } from "./ui/animated-button";
-import heroImg from "../assets/images/hero-character.png";
+import { socialLinks, heroData } from "../../data";
+import { Spotlight } from "../ui/spotlight";
+import { AnimatedButton } from "../ui/animated-button";
+import heroImg from "../../assets/images/hero-character.png";
 
 export default function Hero() {
   return (

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
-import { Meteors } from "./ui/meteors";
-import { AnimatedButton } from "./ui/animated-button";
+import { Meteors } from "../ui/meteors";
+import { AnimatedButton } from "../ui/animated-button";
 
 export default function Contact() {
   return (
