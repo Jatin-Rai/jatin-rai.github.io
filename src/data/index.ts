@@ -2,7 +2,6 @@ import {
   Atom,
   Frame,
   Triangle,
-  Globe,
   Code2,
   FileCode,
   FileCode2,
@@ -34,6 +33,9 @@ import {
   Linkedin,
   Twitter,
   Instagram,
+  Layers,
+  Brain,
+  Braces,
 } from 'lucide-react';
 
 export const navLinks = [
@@ -77,24 +79,24 @@ export const skillsData = [
   {
     category: 'Frontend',
     items: [
-      { name: 'React', icon: Atom },
+      { name: 'React.js', icon: Atom },
       { name: 'Next.js', icon: Frame },
-      { name: 'Vue', icon: Triangle },
-      { name: 'Quasar', icon: Globe },
-      { name: 'HTML', icon: Code2 },
       { name: 'JavaScript', icon: FileCode },
-      { name: 'TypeScript', icon: FileCode2 },
+      { name: 'HTML5', icon: Code2 },
+      { name: 'CSS3', icon: Paintbrush2 },
+      { name: 'Redux', icon: Zap },
+      { name: 'Zustand', icon: Layers },
     ],
   },
   {
-    category: 'UI Styling',
+    category: 'UI/Styling',
     items: [
       { name: 'Tailwind CSS', icon: Wind },
       { name: 'Shadcn/UI', icon: Palette },
       { name: 'Material-UI', icon: Paintbrush },
       { name: 'Bootstrap', icon: Grid },
+      { name: 'Styled-Components', icon: Braces },
       { name: 'SCSS', icon: Asterisk },
-      { name: 'CSS', icon: Paintbrush2 },
     ],
   },
   {
@@ -104,22 +106,38 @@ export const skillsData = [
       { name: 'GitHub', icon: Github },
       { name: 'Vercel', icon: Triangle },
       { name: 'Netlify', icon: Diamond },
-      { name: 'AWS', icon: Cloud },
       { name: 'Firebase', icon: Flame },
       { name: 'Webpack', icon: Package },
       { name: 'Postman', icon: Send },
     ],
   },
   {
-    category: 'CMS & Management',
+    category: 'Project Management',
+    items: [
+      { name: 'Jira', icon: CheckSquare },
+      { name: 'Clickup', icon: ListChecks },
+    ],
+  },
+  {
+    category: 'CMS',
     items: [
       { name: 'PayloadCMS', icon: Code },
       { name: 'Hygraph', icon: LineChart },
       { name: 'Contentful', icon: Database },
       { name: 'Sanity', icon: Folder },
-      { name: 'Jira', icon: CheckSquare },
-      { name: 'Clickup', icon: ListChecks },
-      { name: 'Agile/Scrum', icon: Users },
+    ],
+  },
+  {
+    category: 'AI-Assisted Development',
+    items: [
+      { name: 'Cline', icon: Brain },
+    ],
+  },
+  {
+    category: 'Familiar With',
+    items: [
+      { name: 'TypeScript', icon: FileCode2 },
+      { name: 'AWS', icon: Cloud },
     ],
   },
 ];
@@ -168,28 +186,53 @@ export const projects = [
 
 export const experiences = [
   {
-    date: 'Mar 2025 — Present',
-    role: 'Senior Associate',
-    company: 'Samsung R&D Institute Delhi',
+    date: 'Mar 2025 – Present',
+    role: 'Frontend Engineer (Consultant)',
+    company: 'Adecco India • Client: Samsung R&D Institute Delhi',
+    bullets: [
+      'Leading feature development for Sampark Vconnect 2.0, a React and Material UI-powered enterprise employee portal serving 8,000+ users across 2 Samsung R&D centers pan-India, including 3,000+ users at the Delhi institute.',
+      'Developed an AI-powered KPI insights dashboard for People Partners, surfacing workforce analytics and performance trends to support data-driven HR decision-making.',
+      'Built an AI chatbot integrated with a streaming API for real-time response delivery, assisting employees with HR policy queries and reducing dependency on manual HR support.',
+      'Integrated a live event streaming API into the portal, enabling real-time event updates and announcements across all branch deployments.',
+      'Built a comprehensive Excel reporting module covering 7+ report types — including attendance (regular, contractual, intern), employee details, annual health, in/out summary, and vendor-specific reports — enabling data-driven workforce management across centers.',
+      'Improved portal performance by 40–50% across key components through targeted refactoring, lazy loading, re-render optimization, and removal of unused dependencies from the production bundle.',
+      'Architected scalable state management using Context API, reducing prop-drilling complexity and improving maintainability across the portal’s growing feature surface.',
+      'Mentored 2 interns and onboarded 2 fresher engineers on React best practices, component design patterns, and code review standards, accelerating their ramp-up on a production codebase.',
+    ],
   },
   {
-    date: 'May 2024 — Jan 2025',
-    role: 'Reactjs Developer',
-    company: 'ExpandMyBusiness',
+    date: 'May 2024 – Jan 2025',
+    role: 'React.js Developer',
+    company: 'RightO Services Pvt. Ltd. • Client: EMB Global',
+    bullets: [
+      'Architected and delivered core CRM modules — dashboards, reporting, and client management — using Next.js with SSR, improving application performance for an in-house platform at EMB Global.',
+      'Built data-rich reporting dashboards using Recharts, featuring real-time data visualization across key business metrics.',
+      'Implemented advanced client management interfaces with dynamic search, filtering, and pagination to handle large-scale CRM data efficiently.',
+      'Developed client-side automated cost estimation logic, enabling real-time cost calculations directly in the UI without API dependency.',
+      'Optimized API integration patterns and implemented efficient caching strategies, reducing data fetch times by 35%.',
+      'Collaborated with a cross-functional team of 5 developers, 2 testers, and 1 project manager to deliver critical features on schedule.',
+    ],
   },
   {
-    date: 'May 2022 — May 2024',
+    date: 'May 2022 – May 2024',
     role: 'Software Engineer',
-    company: 'Capgemini Technology Services India Limited',
+    company: 'Capgemini Technology Services Limited',
+    bullets: [
+      'Enhanced investment banking dashboards for HSBC corporate clients, improving UI, refining data visualizations and charts, and implementing advanced filters for finance and cash management workflows.',
+      'Developed 4 automated test scripts for Morgan Stanley using Python and Selenium, improving testing efficiency and reducing manual QA effort.',
+      'Collaborated with cross-functional teams across the APAC region to integrate RESTful APIs and microservices.',
+    ],
   },
   {
-    date: 'Jan 2022 — May 2022',
+    date: 'Jan 2022 – May 2022',
     role: 'React Developer',
     company: 'Shivila Technologies Pvt. Ltd.',
-  },
-  {
-    date: 'Oct 2020 — Feb 2021',
-    role: 'Computer Engineer Intern',
-    company: 'Aizawl Smart City Limited',
+    bullets: [
+      'Developed a responsive HR admin dashboard using React and Material-UI, enabling streamlined management of employee data and HR workflows.',
+      'Implemented MUI Data Grids with advanced sorting and filtering capabilities for efficient handling of large HR datasets.',
+      'Built data visualization components for business analytics, providing actionable insights through interactive charts and reports.',
+      'Managed application state using Redux, ensuring predictable data flow across the dashboard’s complex HR workflows.',
+      'Assigned and led an 8-member frontend team, successfully delivering and deploying projects ahead of deadlines.',
+    ],
   },
 ];

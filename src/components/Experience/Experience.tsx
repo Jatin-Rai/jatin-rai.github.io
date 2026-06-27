@@ -21,14 +21,14 @@ export default function Experience() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="grid grid-cols-1 sm:grid-cols-[1fr_2.5fr] gap-4 sm:gap-8 py-10 border-b border-white/5 last:border-none group relative transition-colors hover:bg-white/2 sm:-mx-6 sm:px-6 rounded-2xl"
+              className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 py-10 border-b border-white/5 last:border-none group relative transition-colors hover:bg-white/2 sm:-mx-6 sm:px-6 rounded-2xl"
             >
-              <div className="text-[0.85rem] text-[#b1b1b8] uppercase tracking-wider font-medium pt-1">
-                {exp.date}
-              </div>
               <div>
                 <h3 className="text-xl font-semibold text-white tracking-tight mb-1">{exp.role}</h3>
                 <div className="text-[1.1rem] text-[#b1b1b8]">{exp.company}</div>
+              </div>
+              <div className="text-[0.85rem] text-[#b1b1b8] uppercase tracking-wider font-medium pt-1 sm:text-right shrink-0">
+                {exp.date}
               </div>
             </motion.div>
           ))}
