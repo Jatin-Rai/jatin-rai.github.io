@@ -29,7 +29,7 @@ export default function Projects() {
               <AnimatePresence>
                 {hoveredIndex === idx && (
                   <motion.span
-                    className="absolute inset-0 h-full w-full bg-white/5 block rounded-[24px]"
+                    className="absolute inset-0 h-full w-full bg-white/5 block rounded-3xl"
                     layoutId="hoverBackgroundProjects"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { duration: 0.15 } }}

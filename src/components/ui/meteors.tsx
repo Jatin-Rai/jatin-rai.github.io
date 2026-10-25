@@ -27,7 +27,7 @@ export const Meteors = ({ number = 20, className }: { number?: number; className
         <span
           key={"meteor" + item.id}
           className={cn(
-            "animate-meteor-effect absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-white shadow-[0_0_15px_3px_rgba(255,255,255,0.9)] rotate-215 z-10",
+            "animate-meteor-effect absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-full bg-white shadow-[0_0_15px_3px_rgba(255,255,255,0.9)] rotate-215 z-10",
             "before:content-[''] before:absolute before:top-1/2 before:translate-y-[-50%] before:w-30 before:h-0.5 before:bg-linear-to-r before:from-white/80 before:to-transparent",
             className,
           )}

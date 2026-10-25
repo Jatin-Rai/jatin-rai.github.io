@@ -32,7 +32,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-[#b1b1b8] text-[clamp(1rem,1.5vw,1.15rem)] leading-[1.6] max-w-[500px] mb-10 font-medium">
+          <p className="text-[#b1b1b8] text-[clamp(1rem,1.5vw,1.15rem)] leading-[1.6] max-w-125 mb-10 font-medium">
             {heroData.description}
           </p>
 
@@ -88,10 +88,10 @@ export default function Hero() {
               ease: "easeInOut",
               delay: 2.5,
             }}
-            className="relative w-[350px] h-[350px] md:w-[500px] md:h-[500px] flex items-center justify-center group"
+            className="relative w-87.5 h-87.5 md:w-125 md:h-125 flex items-center justify-center group"
           >
             {/* Sleek Diamond Mask */}
-            <div className="w-[260px] h-[260px] md:w-[360px] md:h-[360px] rounded-[30px] md:rounded-[45px] shadow-[0_0_40px_rgba(255,255,255,0.06)] border border-white/20 overflow-hidden relative z-10 transition-all duration-700 group-hover:shadow-[0_0_80px_rgba(255,255,255,0.15)] group-hover:border-white/40 rotate-45 transform-gpu isolate ring-1 ring-white/5">
+            <div className="w-65 h-65 md:w-90 md:h-90 rounded-[30px] md:rounded-[45px] shadow-[0_0_40px_rgba(255,255,255,0.06)] border border-white/20 overflow-hidden relative z-10 transition-all duration-700 group-hover:shadow-[0_0_80px_rgba(255,255,255,0.15)] group-hover:border-white/40 rotate-45 transform-gpu isolate ring-1 ring-white/5">
               {/* Counter-rotated image core */}
               <img
                 src={heroImg}

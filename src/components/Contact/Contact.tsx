@@ -18,7 +18,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="bg-linear-to-br from-[#141416]/80 to-[#0a0a0c]/90 border border-white/5 rounded-[24px] p-8 md:p-16 backdrop-blur-xl relative overflow-hidden"
+          className="bg-linear-to-br from-[#141416]/80 to-[#0a0a0c]/90 border border-white/5 rounded-3xl p-8 md:p-16 backdrop-blur-xl relative overflow-hidden"
         >
           <Meteors number={25} />
 

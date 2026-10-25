@@ -29,7 +29,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         className={`hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-1000 transition-all duration-300 ${
           scrolled ? "bg-black/80 shadow-[0_10px_40px_rgba(0,0,0,0.5)]" : "bg-black/40"
-        } backdrop-blur-xl border border-white/5 px-6 py-3 rounded-full w-max max-w-[600px] justify-center items-center`}
+        } backdrop-blur-xl border border-white/5 px-6 py-3 rounded-full w-max max-w-150 justify-center items-center`}
       >
         <ul className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => {

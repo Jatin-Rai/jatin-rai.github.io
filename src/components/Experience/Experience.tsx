@@ -15,7 +15,7 @@ export default function Experience() {
         </div>
 
         <div className="flex flex-col relative">
-          <div className="absolute left-[8px] md:-left-8 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-white/10 to-transparent" />
+          <div className="absolute left-2 md:-left-8 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-white/10 to-transparent" />
 
           {experiences.map((exp, idx) => (
             <motion.div
