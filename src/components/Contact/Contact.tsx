@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Send, Copy, Check, Mail } from "lucide-react";
 import { Meteors } from "../ui/meteors";
 import { AnimatedButton } from "../ui/animated-button";
+import { BorderBeam } from "../ui/border-beam";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -27,8 +28,9 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="bg-linear-to-br from-[#141416]/80 to-[#0a0a0c]/90 border border-white/5 rounded-3xl p-8 md:p-14 backdrop-blur-xl relative overflow-hidden"
+          className="bg-linear-to-br from-[#141416]/80 to-[#0a0a0c]/90 border border-white/5 rounded-3xl p-8 md:p-14 backdrop-blur-xl relative overflow-hidden group"
         >
+          <BorderBeam duration={8} rx={24} colorFrom="#8b5cf6" colorTo="#06b6d4" />
           <Meteors number={25} />
 
           {/* Header & Quick Action */}

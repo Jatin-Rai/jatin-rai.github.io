@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Sparkles } from "lucide-react";
 import { experiences } from "../../data";
+import { BorderBeam } from "../ui/border-beam";
 
 const roleMetrics: Record<number, string[]> = {
   0: ["👥 8,000+ Users", "⚡ 40–50% Speedup", "🤖 AI Chatbot", "📊 Excel Reporting"],
@@ -49,8 +50,17 @@ export default function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="py-8 border-b border-white/5 last:border-none group relative sm:-mx-6 sm:px-6 rounded-2xl hover:bg-white/2 transition-colors"
+                className={`py-8 border-b border-white/5 last:border-none group relative sm:-mx-6 sm:px-6 rounded-2xl transition-colors ${
+                  idx === 0
+                    ? "bg-white/2 border border-violet-500/25 shadow-[0_0_35px_rgba(139,92,246,0.07)] mb-4"
+                    : "hover:bg-white/2"
+                }`}
               >
+                {/* Border beam for the active primary role */}
+                {idx === 0 && (
+                  <BorderBeam duration={7} rx={16} colorFrom="#8b5cf6" colorTo="#06b6d4" />
+                )}
+
                 {/* Timeline node */}
                 {idx === 0 ? (
                   <div className="absolute -left-7.5 md:-left-9.75 top-9 w-3.5 h-3.5 rounded-full bg-[#0a0a0c] border-2 border-violet-400 flex items-center justify-center">

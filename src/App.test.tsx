@@ -6,9 +6,9 @@ describe("App Component", () => {
   it("renders correctly with all main sections", () => {
     const { container } = render(<App />);
 
-    // Check main elements
+    // Check main IDE workspace elements
     expect(screen.getByRole("main")).toBeInTheDocument();
-    expect(container.querySelector("nav")).toBeInTheDocument(); // Navbar
-    expect(container.querySelector("footer")).toBeInTheDocument(); // Footer
+    expect(container.querySelector("header")).toBeInTheDocument(); // Titlebar
+    expect(container.querySelector("footer")).toBeInTheDocument(); // Statusbar
   });
 });

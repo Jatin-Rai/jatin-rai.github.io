@@ -60,11 +60,31 @@ export default function Navbar() {
             );
           })}
         </ul>
+
+        {/* Command Menu Trigger Pill */}
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new CustomEvent("open-command-menu"))}
+          className="ml-2 hidden md:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-mono text-zinc-400 hover:text-white transition-all cursor-pointer shadow-xs active:scale-95"
+          title="Open Command Palette (Cmd + K)"
+        >
+          <span>⌘K</span>
+        </button>
       </motion.nav>
+
+      {/* Mobile Cmd+K trigger */}
+      <button
+        className="md:hidden fixed top-6 right-22 z-1001 h-14 px-3.5 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 flex items-center justify-center text-zinc-300 shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-transform hover:scale-105 active:scale-95 font-mono text-xs cursor-pointer"
+        onClick={() => window.dispatchEvent(new CustomEvent("open-command-menu"))}
+        aria-label="Open command palette"
+      >
+        <span>⌘K</span>
+      </button>
 
       {/* Mobile Toggle FAB */}
       <button
-        className="md:hidden fixed top-6 right-6 z-1001 w-14 h-14 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-transform hover:scale-105"
+        aria-label="Toggle menu"
+        className="md:hidden fixed top-6 right-6 z-1001 w-14 h-14 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-transform hover:scale-105 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}

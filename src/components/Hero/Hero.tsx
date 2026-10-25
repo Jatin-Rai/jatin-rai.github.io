@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, ArrowDown } from "lucide-react";
+import { Mail, ArrowDown, MapPin, Command } from "lucide-react";
 import { Link } from "react-scroll";
 import { socialLinks, heroData } from "../../data";
 import { Spotlight } from "../ui/spotlight";
@@ -21,19 +21,31 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-start"
         >
-          {/* Availability Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-300 mb-6 backdrop-blur-md shadow-xs hover:border-emerald-500/30 transition-colors"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span>Available for opportunities</span>
-          </motion.div>
+          {/* Top Status & Location Badges */}
+          <div className="flex flex-wrap items-center gap-2.5 mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-300 backdrop-blur-md shadow-xs hover:border-emerald-500/30 transition-colors"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Available for opportunities</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/3 border border-white/5 text-xs text-zinc-400 font-mono backdrop-blur-md"
+            >
+              <MapPin size={12} className="text-violet-400" />
+              <span>New Delhi, IN • UTC+5:30</span>
+            </motion.div>
+          </div>
 
           <h1 className="text-[clamp(3rem,8vw,7rem)] leading-[1.05] tracking-tight font-bold mb-6 text-transparent bg-clip-text bg-linear-to-b from-white to-white/70">
             <span className="block text-[clamp(1.25rem,3vw,2.5rem)] text-[#b1b1b8] tracking-tight font-medium mb-2">
@@ -50,7 +62,7 @@ export default function Hero() {
             {heroData.description}
           </p>
 
-          <div className="flex flex-wrap gap-4 mb-6">
+          <div className="flex flex-wrap items-center gap-3 mb-6">
             <Link to="contact" smooth={true} duration={600}>
               <AnimatedButton as="div" variant="primary">
                 Get in touch <Mail size={16} />
@@ -61,6 +73,15 @@ export default function Hero() {
                 View Experience <ArrowDown size={16} />
               </AnimatedButton>
             </Link>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-command-menu"))}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-zinc-400 hover:text-white transition-all cursor-pointer shadow-xs active:scale-95 font-mono"
+              title="Open Command Palette (Cmd + K)"
+            >
+              <Command size={12} />
+              <span>⌘K</span>
+            </button>
           </div>
 
           {/* Core Tech Stack Strip */}

@@ -10,14 +10,14 @@ describe("Navbar Component", () => {
     expect(nav).toBeInTheDocument();
 
     // Mobile toggle button check
-    const toggleBtn = screen.getByRole("button");
+    const toggleBtn = screen.getByRole("button", { name: /toggle menu/i });
     expect(toggleBtn).toBeInTheDocument();
   });
 
   it("toggles mobile menu when button is clicked", () => {
     render(<Navbar />);
 
-    const toggleBtn = screen.getByRole("button");
+    const toggleBtn = screen.getByRole("button", { name: /toggle menu/i });
     fireEvent.click(toggleBtn);
 
     // The mobile menu overlay should appear, which is a list that was hidden before

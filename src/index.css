@@ -7,6 +7,16 @@
 
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
   --animate-meteor-effect: meteor 5s linear infinite;
+  --animate-border-beam: border-beam 6s linear infinite;
+
+  @keyframes border-beam {
+    0% {
+      stroke-dashoffset: 100;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
 
   @keyframes spotlight {
     0% {
@@ -32,6 +42,11 @@
       opacity: 0;
     }
   }
+}
+
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 @layer base {
