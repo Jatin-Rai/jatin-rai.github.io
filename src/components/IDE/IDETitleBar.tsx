@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
-import { Command, GitBranch, Search, Terminal, PanelLeftClose, PanelLeft } from "lucide-react";
+import {
+  Command,
+  GitBranch,
+  Search,
+  Terminal,
+  PanelLeftClose,
+  PanelLeft,
+  Sun,
+  Moon,
+} from "lucide-react";
 import type { FileItem } from "./types";
+import { useTheme } from "../../context/useTheme";
 
 interface IDETitleBarProps {
   activeFile: FileItem;
@@ -17,6 +27,7 @@ export function IDETitleBar({
   terminalOpen,
   setTerminalOpen,
 }: IDETitleBarProps) {
+  const { theme, toggleTheme } = useTheme();
   const [timeStr, setTimeStr] = useState("");
 
   useEffect(() => {
@@ -85,8 +96,8 @@ export function IDETitleBar({
         </button>
       </div>
 
-      {/* Right: Telemetry & Layout Toggles */}
-      <div className="flex items-center gap-3">
+      {/* Right: Telemetry, Theme Toggle & Layout Controls */}
+      <div className="flex items-center gap-2.5">
         {/* Git Branch Badge */}
         <div className="hidden lg:flex items-center gap-1.5 text-xs font-mono text-zinc-400 bg-white/3 border border-white/5 px-2.5 py-1 rounded-md">
           <GitBranch size={13} className="text-emerald-400" />
@@ -100,6 +111,21 @@ export function IDETitleBar({
             <span>{timeStr} IST</span>
           </div>
         )}
+
+        {/* Theme Toggle Button */}
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/10 border border-white/5 bg-white/5 transition-all cursor-pointer flex items-center justify-center"
+          title={theme === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme"}
+          aria-label="Toggle theme"
+        >
+          {theme === "dark" ? (
+            <Sun size={14} className="text-amber-300 transition-transform hover:rotate-45" />
+          ) : (
+            <Moon size={14} className="text-violet-400 transition-transform hover:-rotate-12" />
+          )}
+        </button>
 
         {/* Terminal Toggle Button */}
         <button

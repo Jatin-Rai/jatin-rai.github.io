@@ -104,3 +104,172 @@
     background: rgba(255, 255, 255, 0.3);
   }
 }
+
+/* =========================================================================
+   Light Theme System (Clean Modern Light IDE)
+   ========================================================================= */
+
+[data-theme="light"] {
+  --bg-color: #f8fafc;
+  --surface-color: rgba(255, 255, 255, 0.95);
+  --surface-border: rgba(0, 0, 0, 0.08);
+  --surface-hover: rgba(0, 0, 0, 0.04);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --accent-color: #7c3aed;
+  --accent-glow: rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .bg-dot-grid {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px) !important;
+}
+
+/* Base Surfaces & Sidebars */
+[data-theme="light"] aside,
+[data-theme="light"] [class*="bg-[#0a0a0e]"] {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] header,
+[data-theme="light"] [class*="bg-[#0d0d11]"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] [class*="bg-[#0d0d12]"] {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] [class*="bg-[#0c0c10]"] {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] [class*="bg-[#09090c]"],
+[data-theme="light"] [class*="bg-[#09090d]"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] [class*="bg-[#0c0c11]"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] [class*="bg-[#14141a]"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] [class*="bg-[#0f0f13]"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Light borders across all opacity variants */
+[data-theme="light"] [class*="border-white/"] {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Light text */
+[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .text-zinc-100 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .text-zinc-200 {
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .text-zinc-300 {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .text-zinc-400 {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .text-zinc-500 {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .text-zinc-600 {
+  color: #94a3b8 !important;
+}
+
+/* Gradient text adjustments */
+[data-theme="light"] .from-white {
+  --tw-gradient-from: #0f172a var(--tw-gradient-from-position) !important;
+}
+
+[data-theme="light"] .to-zinc-400,
+[data-theme="light"] .to-zinc-500 {
+  --tw-gradient-to: #475569 var(--tw-gradient-to-position) !important;
+}
+
+/* Light backgrounds for cards and pills */
+[data-theme="light"] [class*="bg-white/1"],
+[data-theme="light"] [class*="bg-white/2"],
+[data-theme="light"] [class*="bg-white/3"],
+[data-theme="light"] [class*="bg-white/4"],
+[data-theme="light"] [class*="bg-white/5"] {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] [class*="bg-white/10"] {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] [class*="bg-white/15"] {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] [class*="hover:bg-white/5"]:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] [class*="hover:bg-white/10"]:hover {
+  background-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+[data-theme="light"] [class*="hover:text-white"]:hover {
+  color: #0f172a !important;
+}
+
+/* Dark elements in cards like code blocks */
+[data-theme="light"] [class*="bg-black/"] {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Text in code blocks */
+[data-theme="light"] pre,
+[data-theme="light"] code {
+  color: #0f172a !important;
+}
+
+/* Scrollbars */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18) !important;
+  border-radius: 9999px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+}

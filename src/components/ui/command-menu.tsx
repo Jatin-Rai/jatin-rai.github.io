@@ -12,6 +12,8 @@ import {
   Check,
   X,
   Compass,
+  Sun,
+  Moon,
 } from "lucide-react";
 import {
   IconBrandGithub as Github,
@@ -20,6 +22,7 @@ import {
   IconBrandInstagram as Instagram,
 } from "@tabler/icons-react";
 import resumePdf from "../../assets/docs/jatinrai-resume.pdf";
+import { useTheme } from "../../context/useTheme";
 
 interface CommandItem {
   id: string;
@@ -32,6 +35,7 @@ interface CommandItem {
 }
 
 export function CommandMenu() {
+  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -143,6 +147,18 @@ export function CommandMenu() {
           window.open(resumePdf, "_blank", "noopener,noreferrer");
         },
       },
+      {
+        id: "act-theme",
+        title: theme === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme",
+        subtitle: `Currently active: ${theme} mode`,
+        category: "Actions",
+        icon: theme === "dark" ? Sun : Moon,
+        action: () => {
+          toggleTheme();
+          closeMenu();
+        },
+        shortcut: "T",
+      },
 
       // Socials
       {
@@ -190,7 +206,7 @@ export function CommandMenu() {
         },
       },
     ],
-    [closeMenu, copyEmail, copied],
+    [closeMenu, copyEmail, copied, theme, toggleTheme],
   );
 
   const filteredItems = useMemo(() => {
