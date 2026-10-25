@@ -33,6 +33,7 @@ import {
   Layers,
   Brain,
   Braces,
+  Sparkles,
 } from "lucide-react";
 import {
   IconBrandGithub as Github,
@@ -45,7 +46,6 @@ export const navLinks = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
 ];
@@ -84,6 +84,7 @@ export const skillsData = [
     items: [
       { name: "React.js", icon: Atom },
       { name: "Next.js", icon: Frame },
+      { name: "TypeScript", icon: FileCode2 },
       { name: "JavaScript", icon: FileCode },
       { name: "HTML5", icon: Code2 },
       { name: "CSS3", icon: Paintbrush2 },
@@ -132,14 +133,14 @@ export const skillsData = [
   },
   {
     category: "AI-Assisted Development",
-    items: [{ name: "Cline", icon: Brain }],
+    items: [
+      { name: "Anti Gravity", icon: Sparkles },
+      { name: "Cline", icon: Brain },
+    ],
   },
   {
     category: "Familiar With",
-    items: [
-      { name: "TypeScript", icon: FileCode2 },
-      { name: "AWS", icon: Cloud },
-    ],
+    items: [{ name: "AWS", icon: Cloud }],
   },
 ];
 

@@ -52,7 +52,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute inset-0 bg-white/10 rounded-full z-0 pointer-events-none"
+                    className="absolute inset-0 bg-white/10 border border-white/15 rounded-full z-0 pointer-events-none shadow-[0_0_15px_rgba(139,92,246,0.2)]"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}

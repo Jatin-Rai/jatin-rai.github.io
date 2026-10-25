@@ -10,7 +10,7 @@
     "test": "vp test run",
     "test:coverage": "vp test run --coverage",
     "preview": "vp preview",
-    "predeploy": "npm run build",
+    "predeploy": "vp run build",
     "deploy": "gh-pages -d dist",
     "prepare": "vp config"
   },

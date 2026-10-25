@@ -21,6 +21,20 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-start"
         >
+          {/* Availability Status Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-300 mb-6 backdrop-blur-md shadow-xs hover:border-emerald-500/30 transition-colors"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Available for opportunities</span>
+          </motion.div>
+
           <h1 className="text-[clamp(3rem,8vw,7rem)] leading-[1.05] tracking-tight font-bold mb-6 text-transparent bg-clip-text bg-linear-to-b from-white to-white/70">
             <span className="block text-[clamp(1.25rem,3vw,2.5rem)] text-[#b1b1b8] tracking-tight font-medium mb-2">
               {heroData.greeting}
@@ -32,24 +46,37 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-[#b1b1b8] text-[clamp(1rem,1.5vw,1.15rem)] leading-[1.6] max-w-125 mb-10 font-medium">
+          <p className="text-[#b1b1b8] text-[clamp(1rem,1.5vw,1.15rem)] leading-[1.6] max-w-125 mb-8 font-medium">
             {heroData.description}
           </p>
 
-          <div className="flex flex-wrap gap-4 mb-10">
+          <div className="flex flex-wrap gap-4 mb-6">
             <Link to="contact" smooth={true} duration={600}>
               <AnimatedButton as="div" variant="primary">
                 Get in touch <Mail size={16} />
               </AnimatedButton>
             </Link>
-            <Link to="projects" smooth={true} duration={600}>
+            <Link to="experience" smooth={true} duration={600}>
               <AnimatedButton as="div" variant="secondary">
-                View Work <ArrowDown size={16} />
+                View Experience <ArrowDown size={16} />
               </AnimatedButton>
             </Link>
           </div>
 
-          <div className="flex gap-6 mt-8">
+          {/* Core Tech Stack Strip */}
+          <div className="flex flex-wrap items-center gap-2 mb-8 pt-2">
+            <span className="text-xs text-zinc-500 font-medium">Core Stack:</span>
+            {["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"].map((tech) => (
+              <span
+                key={tech}
+                className="text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/5 text-zinc-300 font-medium hover:border-white/20 transition-colors"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex gap-6">
             {socialLinks.map((social, idx) => {
               const Icon = social.icon;
               return (
@@ -90,8 +117,11 @@ export default function Hero() {
             }}
             className="relative w-87.5 h-87.5 md:w-125 md:h-125 flex items-center justify-center group"
           >
+            {/* Ambient subtle glow backdrop */}
+            <div className="absolute inset-0 bg-radial from-violet-600/15 via-cyan-500/10 to-transparent blur-3xl -z-10 pointer-events-none scale-125" />
+
             {/* Sleek Diamond Mask */}
-            <div className="w-65 h-65 md:w-90 md:h-90 rounded-[30px] md:rounded-[45px] shadow-[0_0_40px_rgba(255,255,255,0.06)] border border-white/20 overflow-hidden relative z-10 transition-all duration-700 group-hover:shadow-[0_0_80px_rgba(255,255,255,0.15)] group-hover:border-white/40 rotate-45 transform-gpu isolate ring-1 ring-white/5">
+            <div className="w-65 h-65 md:w-90 md:h-90 rounded-[30px] md:rounded-[45px] shadow-[0_0_40px_rgba(255,255,255,0.06)] border border-white/20 overflow-hidden relative z-10 transition-all duration-700 group-hover:shadow-[0_0_80px_rgba(139,92,246,0.25)] group-hover:border-violet-400/40 rotate-45 transform-gpu isolate ring-1 ring-white/5">
               {/* Counter-rotated image core */}
               <img
                 src={heroImg}

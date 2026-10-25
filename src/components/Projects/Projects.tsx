@@ -45,27 +45,42 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 whileHover={{
                   y: -5,
-                  borderColor: "rgba(255,255,255,0.15)",
-                  boxShadow: "0 15px 35px rgba(0,0,0,0.4)",
+                  borderColor: "rgba(139, 92, 246, 0.25)",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
                 }}
-                className="p-10 h-full border border-white/5 rounded-[20px] flex flex-col justify-between gap-10 bg-linear-to-br from-[#141416]/90 to-[#0a0a0c]/80 backdrop-blur-md relative overflow-hidden group z-10"
+                className="p-8 h-full border border-white/5 rounded-2xl flex flex-col justify-between gap-6 bg-linear-to-br from-[#141416]/90 to-[#0a0a0c]/85 backdrop-blur-md relative overflow-hidden group z-10 transition-colors"
               >
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                {/* Ambient glow on hover */}
+                <div className="absolute -top-20 -right-20 w-44 h-44 bg-violet-600/15 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                <div className="relative z-10 flex flex-col gap-4">
-                  <h3 className="text-[1.5rem] font-semibold text-white tracking-tight">
+                {/* Window Control Header Bar */}
+                <div className="flex items-center justify-between pb-3 border-b border-white/5 relative z-10">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/25 border border-red-500/40" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/25 border border-yellow-500/40" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/25 border border-green-500/40" />
+                  </div>
+                  <span className="text-[11px] text-zinc-500 font-mono">
+                    {project.tags[0] || "Web Application"}
+                  </span>
+                </div>
+
+                <div className="relative z-10 flex flex-col gap-3">
+                  <h3 className="text-[1.35rem] font-semibold text-white tracking-tight group-hover:text-violet-200 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-[#b1b1b8] text-[1.05rem] leading-[1.6]">{project.desc}</p>
-                  <div className="flex flex-wrap gap-3 mt-2">
+                  <p className="text-[#b1b1b8] text-[0.95rem] leading-[1.6]">{project.desc}</p>
+
+                  <div className="flex flex-wrap gap-2 mt-2">
                     {project.tags.map((tag) => {
                       const Icon = projectIconMap[tag];
                       return (
                         <span
                           key={tag}
-                          className="inline-flex items-center gap-2 bg-white/5 text-white px-3 py-1.5 rounded-full text-[0.85rem] font-medium border border-white/5"
+                          className="inline-flex items-center gap-1.5 bg-white/4 text-zinc-300 px-3 py-1 rounded-full text-xs font-medium border border-white/5 hover:border-white/10 transition-colors"
                         >
-                          {Icon && <Icon size={14} className="text-[#b1b1b8]" />}
+                          {Icon && <Icon size={12} className="text-[#b1b1b8]" />}
                           {tag}
                         </span>
                       );
@@ -73,16 +88,18 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <div className="relative z-10 flex self-end">
+                <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/5 mt-auto">
+                  <span className="text-xs text-zinc-500 font-medium">Production Live</span>
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-full bg-white/5 border border-transparent flex items-center justify-center text-white transition-all hover:bg-white hover:text-black hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group/icon"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white transition-all hover:bg-white hover:text-black hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] group/btn"
                   >
+                    <span>Visit Live</span>
                     <ArrowUpRight
-                      size={20}
-                      className="transition-transform group-hover/icon:rotate-45"
+                      size={13}
+                      className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
                     />
                   </a>
                 </div>
