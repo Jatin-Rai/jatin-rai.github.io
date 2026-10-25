@@ -6,7 +6,7 @@ import { AnimatedButton } from "../ui/animated-button";
 export default function Contact() {
   return (
     <section id="contact" className="min-h-screen flex flex-col justify-center py-24 relative">
-      <div className="w-[90%] max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-12 md:gap-20">
+      <div className="w-[90%] max-w-300 mx-auto grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-12 md:gap-20">
         <div>
           <h2 className="text-[2.5rem] font-bold text-transparent bg-clip-text bg-linear-to-br from-white to-zinc-500 sticky top-32">
             Contact

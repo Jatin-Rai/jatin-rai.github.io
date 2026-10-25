@@ -5,7 +5,7 @@ const currentYear = new Date().getFullYear();
 export default function Footer() {
   return (
     <footer className="py-12 border-t border-white/5 relative z-10 bg-[#0a0a0c]">
-      <div className="w-[90%] max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="w-[90%] max-w-300 mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-white font-bold text-xl tracking-tighter">
           Jatin<span className="text-zinc-500">Rai.</span>
         </div>
@@ -23,7 +23,7 @@ export default function Footer() {
                 <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 bg-[#141416] text-white px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shadow-xl border border-white/10 pointer-events-none z-50">
                   {social.username}
                   {/* Tooltip downward triangle pointer */}
-                  <div className="absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-2 h-2 bg-[#141416] border-b border-r border-white/10 rotate-45"></div>
+                  <div className="absolute -bottom-1.25 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#141416] border-b border-r border-white/10 rotate-45"></div>
                 </div>
               </div>
             );

@@ -13,7 +13,7 @@ export default function Hero() {
       className="min-h-screen flex items-center pt-24 pb-12 relative overflow-hidden"
     >
       <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-[150vh]" fill="white" />
-      <div className="w-[90%] max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-12 md:gap-16 items-center relative z-10">
+      <div className="w-[90%] max-w-300 mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-12 md:gap-16 items-center relative z-10">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -28,7 +28,7 @@ export const AnimatedButton = React.forwardRef<
       <Component
         ref={ref}
         className={cn(
-          "group relative inline-flex h-[50px] overflow-hidden rounded-full p-px focus:outline-hidden transition-transform active:scale-95",
+          "group relative inline-flex h-12.5 overflow-hidden rounded-full p-px focus:outline-hidden transition-transform active:scale-95",
           containerClassName,
         )}
         {...props}
