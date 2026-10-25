@@ -50,7 +50,7 @@ export function IDETabs({ openTabs, activeFileId, onSelectTab, onCloseTab }: IDE
               }`}
             >
               {getTabIcon(tabId)}
-              <span className="truncate max-w-[120px]">{file.name}</span>
+              <span className="truncate max-w-30">{file.name}</span>
 
               {/* Close Button (if more than 1 tab open) */}
               {openTabs.length > 1 && (

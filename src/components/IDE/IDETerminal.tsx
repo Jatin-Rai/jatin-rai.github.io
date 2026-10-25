@@ -18,8 +18,14 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [command, setCommand] = useState("");
   const [history, setHistory] = useState<LogEntry[]>([
-    { type: "output", text: "Jatin Rai IDE Shell [Version 4.0.0] - type 'help' for commands." },
-    { type: "success", text: "Connected to Samsung R&D Institute Delhi Portal Core Cluster." },
+    {
+      type: "output",
+      text: "Jatin Rai IDE Shell [Version 4.2.0] - type 'help' for available commands.",
+    },
+    {
+      type: "success",
+      text: "✓ Connected to Samsung R&D Institute Delhi Portal Core Cluster (TLS 1.3).",
+    },
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -45,7 +51,19 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
       case "help":
         newLogs.push({
           type: "output",
-          text: "Available commands:\n  • exp            - Jump to Experience (Samsung R&D, EMB Global)\n  • skills         - Open Skills configuration\n  • about          - Open Bio and about.md\n  • contact        - Open Contact form and script\n  • copy-email     - Copy jatinrai258@gmail.com to clipboard\n  • resume         - Open PDF resume\n  • whoami         - Display candidate profile\n  • clear          - Clear terminal output",
+          text: `Available Shell Commands:
+  • exp / experience   - Open experience.tsx (Samsung R&D, EMB Global)
+  • skills             - Open skills.json (30 indexed technologies)
+  • skills --top       - Print top 5 core architectural strengths
+  • about              - Open about.md & Architecture Decision Records
+  • contact            - Open contact.sh & interactive API console
+  • git log            - Pretty print Git release history
+  • whoami             - Display candidate engineering profile
+  • uptime             - Show deployment runtime metrics
+  • sudo hire jatin    - Initiate offer workflow (Easter Egg)
+  • resume / cv        - Open official PDF resumé
+  • copy-email         - Copy jatinrai258@gmail.com to clipboard
+  • clear              - Clear terminal buffer`,
         });
         break;
 
@@ -58,7 +76,60 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
       case "bio":
         newLogs.push({
           type: "output",
-          text: "Jatin Rai - Lead Frontend Engineer with 4+ years experience building scalable enterprise web platforms at Samsung R&D Institute Delhi, Capgemini, and EMB Global.",
+          text: `Identity: Jatin Rai
+Title: Lead Frontend Engineer / Web Architect
+Experience: 4+ Years Enterprise Production
+Active Engagement: Samsung R&D Institute Delhi (Sampark Vconnect 2.0)
+Workforce Scale: 8,000+ daily employees across 2 centers
+Specialization: React 19, TypeScript, Next.js, SSE Streaming APIs, Performance Profiling`,
+        });
+        break;
+
+      case "skills --top":
+        newLogs.push({
+          type: "output",
+          text: `Top Production Strengths:
+  1. React 19 / Next.js     [4+ Years]  - High-traffic SSR & Enterprise Portals
+  2. TypeScript             [3+ Years]  - 100% Strict Type Safety & Clean Contracts
+  3. Tailwind CSS v4        [3+ Years]  - CSS-first, zero-runtime theme systems
+  4. Real-Time Streaming    [2+ Years]  - SSE event streaming & LLM AI Chatbots
+  5. State Orchestration    [4+ Years]  - Context API, Redux Toolkit, Zustand`,
+        });
+        break;
+
+      case "git log":
+        newLogs.push({
+          type: "output",
+          text: `* e4f9b1c (HEAD -> main, tag: v2.5.0-prod) feat(ai-chatbot): streaming SSE responses for Samsung R&D
+* a7d832e (tag: v2.0.0) arch(crm-ssr): deliver Next.js SSR architecture for EMB Global
+* f1c045b (tag: v1.5.0) feat(banking): HSBC corporate financial analytics dashboards
+* 90b218a (tag: v1.0.0) lead(hr-admin): lead 8-member frontend team at Shivila`,
+        });
+        break;
+
+      case "uptime":
+        newLogs.push({
+          type: "success",
+          text: `✓ System Status: 100% ONLINE
+• Uptime: 99.98% SLA
+• Runtime Engine: Vite+ (Rolldown / Vitest / Oxlint)
+• Local Time: New Delhi, IN (UTC+5:30)
+• Availability: Open to Senior / Lead Frontend Opportunities`,
+        });
+        break;
+
+      case "sudo hire jatin":
+      case "hire":
+      case "curl /hire":
+        newLogs.push({
+          type: "success",
+          text: `🎉 EXCELLENT DECISION: ACCESS GRANTED!
+==============================================
+Candidate: Jatin Rai
+Status: READY TO ACCELERATE YOUR ENGINEERING TEAM
+Direct Email: jatinrai258@gmail.com
+SLA: Reply within 24 hours
+Action: Email dispatched or use contact.sh tab to submit proposal!`,
         });
         break;
 
@@ -94,16 +165,10 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
 
       case "resume":
       case "cv":
+      case "curl resume":
+      case "download cv":
         window.open(resumePdf, "_blank", "noopener,noreferrer");
         newLogs.push({ type: "success", text: "Opening jatinrai-resume.pdf in new tab..." });
-        break;
-
-      case "curl /hire":
-      case "hire":
-        newLogs.push({
-          type: "success",
-          text: "⚡ STATUS: AVAILABLE FOR OPPORTUNITIES\n• Role: Lead / Senior Frontend Engineer\n• Highlights: 8,000+ Users @ Samsung, 40-50% Performance Speedup, AI Streaming Chatbot\n• Email: jatinrai258@gmail.com",
-        });
         break;
 
       default:
@@ -123,7 +188,7 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
   return (
     <div
       className={`border-t border-white/10 bg-[#0a0a0e]/95 backdrop-blur-2xl flex flex-col shrink-0 transition-all duration-300 z-30 ${
-        isExpanded ? "h-80" : "h-44 sm:h-52"
+        isExpanded ? "h-80" : "h-44 sm:h-56"
       }`}
     >
       {/* Terminal Title Bar */}
@@ -137,16 +202,18 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
         {/* Quick Clickable Shortcuts */}
         <div className="hidden md:flex items-center gap-1.5 font-mono text-[11px]">
           <span className="text-zinc-600 mr-1">Quick:</span>
-          {["curl /hire", "exp", "skills", "copy-email", "clear"].map((preset) => (
-            <button
-              key={preset}
-              type="button"
-              onClick={() => handleCommandSubmit(preset)}
-              className="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 text-zinc-400 hover:text-white transition-all cursor-pointer"
-            >
-              {preset}
-            </button>
-          ))}
+          {["sudo hire jatin", "git log", "skills --top", "uptime", "copy-email", "clear"].map(
+            (preset) => (
+              <button
+                key={preset}
+                type="button"
+                onClick={() => handleCommandSubmit(preset)}
+                className="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 text-zinc-400 hover:text-white transition-all cursor-pointer"
+              >
+                {preset}
+              </button>
+            ),
+          )}
         </div>
 
         {/* Window controls */}
@@ -154,7 +221,7 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
           <button
             type="button"
             onClick={() => setIsExpanded((prev) => !prev)}
-            className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+            className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
             title={isExpanded ? "Minimize" : "Maximize"}
           >
             {isExpanded ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
@@ -162,7 +229,7 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="p-1 rounded text-zinc-400 hover:text-rose-400 hover:bg-white/5 transition-colors"
+            className="p-1 rounded text-zinc-400 hover:text-rose-400 hover:bg-white/5 transition-colors cursor-pointer"
             title="Close Terminal"
           >
             <X size={13} />
@@ -205,7 +272,7 @@ export function IDETerminal({ isOpen, onClose, onOpenFile }: IDETerminalProps) {
           type="text"
           value={command}
           onChange={(e) => setCommand(e.target.value)}
-          placeholder="Type command ('help', 'exp', 'skills', 'whoami', 'copy-email')..."
+          placeholder="Type command ('help', 'git log', 'skills --top', 'sudo hire jatin', 'clear')..."
           className="flex-1 bg-transparent text-white font-mono text-xs outline-none placeholder:text-zinc-600"
         />
         <button

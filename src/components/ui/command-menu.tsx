@@ -304,7 +304,7 @@ export function CommandMenu() {
             </div>
 
             {/* Results List */}
-            <div className="max-h-[380px] overflow-y-auto p-2 space-y-1">
+            <div className="max-h-95 overflow-y-auto p-2 space-y-1">
               {filteredItems.length === 0 ? (
                 <div className="py-12 text-center text-zinc-500 text-sm">
                   No commands found for &ldquo;{query}&rdquo;

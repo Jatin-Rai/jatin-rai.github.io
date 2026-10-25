@@ -1,7 +1,25 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, GitCommit, Sparkles } from "lucide-react";
+import {
+  ChevronDown,
+  GitBranch,
+  Layers,
+  Users,
+  Zap,
+  Building,
+  CheckCircle2,
+  Tag,
+  Filter,
+} from "lucide-react";
 import { BorderBeam } from "../../ui/border-beam";
+
+type ChangelogType = "feat" | "perf" | "arch" | "lead" | "test";
+
+interface ChangelogItem {
+  type: ChangelogType;
+  scope: string;
+  description: string;
+}
 
 interface RoleRelease {
   version: string;
@@ -10,12 +28,10 @@ interface RoleRelease {
   client?: string;
   date: string;
   status: "active" | "completed";
+  branch: string;
+  commitHash: string;
   metrics: string[];
-  changelog: {
-    type: "feat" | "perf" | "arch" | "lead" | "test";
-    scope: string;
-    description: string;
-  }[];
+  changelog: ChangelogItem[];
 }
 
 const CAREER_RELEASES: RoleRelease[] = [
@@ -26,6 +42,8 @@ const CAREER_RELEASES: RoleRelease[] = [
     client: "Samsung R&D Institute Delhi",
     date: "Mar 2025 – Present",
     status: "active",
+    branch: "samsung/vconnect-prod",
+    commitHash: "e4f9b1c",
     metrics: ["👥 8,000+ Users", "⚡ 40–50% Speedup", "🤖 AI Chatbot", "📊 7+ Excel Modules"],
     changelog: [
       {
@@ -85,6 +103,8 @@ const CAREER_RELEASES: RoleRelease[] = [
     client: "EMB Global",
     date: "May 2024 – Jan 2025",
     status: "completed",
+    branch: "emb-global/crm-core",
+    commitHash: "a7d832e",
     metrics: ["📈 Real-Time CRM", "🚀 Next.js SSR", "⚡ 35% Faster Fetch", "👥 5+ Dev Team"],
     changelog: [
       {
@@ -126,6 +146,8 @@ const CAREER_RELEASES: RoleRelease[] = [
     client: "HSBC & Morgan Stanley",
     date: "May 2022 – May 2024",
     status: "completed",
+    branch: "capgemini/banking-apac",
+    commitHash: "f1c045b",
     metrics: ["🏦 HSBC Investment Banking", "🧪 Morgan Stanley QA", "🌐 APAC Cross-Functional"],
     changelog: [
       {
@@ -154,6 +176,8 @@ const CAREER_RELEASES: RoleRelease[] = [
     company: "Shivila Technologies Pvt. Ltd.",
     date: "Jan 2022 – May 2022",
     status: "completed",
+    branch: "shivila/hr-admin",
+    commitHash: "90b218a",
     metrics: ["👥 8-Member Team Lead", "📊 MUI Data Grids", "⚡ Redux Architecture"],
     changelog: [
       {
@@ -178,9 +202,13 @@ const CAREER_RELEASES: RoleRelease[] = [
   },
 ];
 
+type ViewMode = "releases" | "git-graph";
+
 export function ExperienceView() {
+  const [viewMode, setViewMode] = useState<ViewMode>("releases");
+  const [activeFilter, setActiveFilter] = useState<string>("all");
   const [expandedReleases, setExpandedReleases] = useState<Record<number, boolean>>({
-    0: true, // Most recent open by default
+    0: true,
   });
 
   const toggleRelease = (idx: number) => {
@@ -207,121 +235,239 @@ export function ExperienceView() {
     }
   };
 
+  const tagCounts = useMemo(() => {
+    const counts: Record<string, number> = {
+      all: 0,
+      feat: 0,
+      perf: 0,
+      arch: 0,
+      lead: 0,
+      test: 0,
+    };
+    CAREER_RELEASES.forEach((rel) => {
+      rel.changelog.forEach((item) => {
+        counts.all += 1;
+        if (counts[item.type] !== undefined) {
+          counts[item.type] += 1;
+        }
+      });
+    });
+    return counts;
+  }, []);
+
   return (
-    <div className="p-4 sm:p-8 md:p-10 max-w-5xl mx-auto space-y-8 font-sans">
-      {/* File Header Bar */}
-      <div className="flex items-center justify-between pb-4 border-b border-white/10 text-xs font-mono text-zinc-500">
+    <div className="p-5 md:p-8 max-w-5xl mx-auto space-y-7 font-sans">
+      {/* Top Breadcrumb & Status Pill */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/5 text-xs font-mono">
+        <div className="flex items-center gap-2 text-zinc-400">
+          <span className="text-violet-400">src/careers/experience.tsx</span>
+          <span>•</span>
+          <span className="text-zinc-500">Production Deployments & Changelogs</span>
+        </div>
+
         <div className="flex items-center gap-2">
-          <span className="text-sky-400 font-semibold">src/careers/experience.tsx</span>
-          <span>• 4 Major Deployments</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-zinc-300">Production Verified</span>
-        </div>
-      </div>
-
-      {/* Production Telemetry Top Strip */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-white/2 border border-white/5 font-mono text-xs">
-        <div>
-          <span className="text-zinc-500 block text-[10px] uppercase">Active Engagement</span>
-          <span className="text-white font-medium text-xs">Samsung R&D</span>
-        </div>
-        <div>
-          <span className="text-zinc-500 block text-[10px] uppercase">Direct Scale</span>
-          <span className="text-emerald-400 font-bold text-xs">8,000+ Users</span>
-        </div>
-        <div>
-          <span className="text-zinc-500 block text-[10px] uppercase">Perf Speedup</span>
-          <span className="text-violet-400 font-bold text-xs">40–50% Faster</span>
-        </div>
-        <div>
-          <span className="text-zinc-500 block text-[10px] uppercase">Total Experience</span>
-          <span className="text-amber-400 font-bold text-xs">4+ Years</span>
-        </div>
-      </div>
-
-      {/* Career Release Cards */}
-      <div className="space-y-6">
-        {CAREER_RELEASES.map((rel, idx) => {
-          const isExpanded = !!expandedReleases[idx];
-          const isPrimary = rel.status === "active";
-
-          return (
-            <motion.div
-              key={rel.version}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: idx * 0.08 }}
-              className={`p-5 sm:p-6 rounded-2xl border transition-all relative overflow-hidden ${
-                isPrimary
-                  ? "bg-gradient-to-br from-[#121218] to-[#0a0a0f] border-violet-500/30 shadow-[0_0_35px_rgba(139,92,246,0.08)]"
-                  : "bg-white/2 hover:bg-white/4 border-white/5"
+          {/* View Mode Toggle: Releases vs Git Graph */}
+          <div className="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/10 text-xs">
+            <button
+              type="button"
+              onClick={() => setViewMode("releases")}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-md transition-all cursor-pointer ${
+                viewMode === "releases"
+                  ? "bg-violet-600 text-white font-medium"
+                  : "text-zinc-400 hover:text-white"
               }`}
             >
-              {isPrimary && (
-                <BorderBeam duration={8} rx={16} colorFrom="#8b5cf6" colorTo="#06b6d4" />
-              )}
+              <Layers size={12} />
+              <span>Release Notes</span>
+            </button>
 
-              {/* Card Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/5">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs font-mono font-bold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">
-                      {rel.version}
-                    </span>
-                    <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                      {rel.role}
-                    </h3>
-                    {isPrimary && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full font-semibold">
-                        <Sparkles size={10} /> Active
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-xs sm:text-sm text-zinc-300">
-                    <span className="font-semibold text-white">{rel.company}</span>
-                    {rel.client && <span className="text-zinc-400"> • Client: {rel.client}</span>}
-                  </div>
-                </div>
+            <button
+              type="button"
+              onClick={() => setViewMode("git-graph")}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-md transition-all cursor-pointer ${
+                viewMode === "git-graph"
+                  ? "bg-violet-600 text-white font-medium"
+                  : "text-zinc-400 hover:text-white"
+              }`}
+            >
+              <GitBranch size={12} />
+              <span>Git Graph</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
-                <div className="text-xs font-mono text-zinc-500 shrink-0 sm:text-right">
-                  {rel.date}
-                </div>
-              </div>
+      {/* Top Production Impact Metric Bar */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="p-3.5 rounded-xl bg-white/2 border border-white/5 flex items-center gap-3">
+          <div className="p-2.5 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-400">
+            <Users size={16} />
+          </div>
+          <div>
+            <div className="text-lg font-bold font-mono text-white">8,000+</div>
+            <div className="text-[11px] text-zinc-400">Workforce Scale</div>
+          </div>
+        </div>
 
-              {/* Metric Tags */}
-              <div className="flex flex-wrap gap-2 pt-3">
-                {rel.metrics.map((metric, mIdx) => (
-                  <span
-                    key={mIdx}
-                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/4 border border-white/5 text-zinc-300"
-                  >
-                    {metric}
-                  </span>
-                ))}
-              </div>
+        <div className="p-3.5 rounded-xl bg-white/2 border border-white/5 flex items-center gap-3">
+          <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+            <Zap size={16} />
+          </div>
+          <div>
+            <div className="text-lg font-bold font-mono text-emerald-400">40–50%</div>
+            <div className="text-[11px] text-zinc-400">Runtime Speedup</div>
+          </div>
+        </div>
 
-              {/* Changelog Toggle */}
-              <div className="pt-4">
-                <button
-                  type="button"
+        <div className="p-3.5 rounded-xl bg-white/2 border border-white/5 flex items-center gap-3">
+          <div className="p-2.5 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-400">
+            <Building size={16} />
+          </div>
+          <div>
+            <div className="text-lg font-bold font-mono text-white">4 Companies</div>
+            <div className="text-[11px] text-zinc-400">4+ Years Shipped</div>
+          </div>
+        </div>
+
+        <div className="p-3.5 rounded-xl bg-white/2 border border-white/5 flex items-center gap-3">
+          <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400">
+            <CheckCircle2 size={16} />
+          </div>
+          <div>
+            <div className="text-lg font-bold font-mono text-amber-300">100% CSAT</div>
+            <div className="text-[11px] text-zinc-400">Production Reliability</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Filter Chips Bar (Category / Scope) */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+        <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono">
+          <span className="flex items-center gap-1 text-zinc-500 mr-1 text-[11px]">
+            <Filter size={11} />
+            Filter Log:
+          </span>
+          {[
+            { id: "all", label: "All Items", count: tagCounts.all },
+            { id: "feat", label: "feat: Features & AI", count: tagCounts.feat },
+            { id: "perf", label: "perf: Performance", count: tagCounts.perf },
+            { id: "arch", label: "arch: Architecture", count: tagCounts.arch },
+            { id: "lead", label: "lead: Leadership", count: tagCounts.lead },
+            { id: "test", label: "test: Automation", count: tagCounts.test },
+          ].map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setActiveFilter(item.id)}
+              className={`px-2.5 py-1 rounded-md transition-all cursor-pointer border text-xs flex items-center gap-1.5 ${
+                activeFilter === item.id
+                  ? "bg-white text-black font-semibold border-white"
+                  : "bg-white/3 text-zinc-400 border-white/5 hover:border-white/20 hover:text-white"
+              }`}
+            >
+              <span>{item.label}</span>
+              <span
+                className={`text-[10px] px-1 rounded ${
+                  activeFilter === item.id ? "bg-black/20 text-black" : "bg-white/10 text-zinc-400"
+                }`}
+              >
+                {item.count}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <div className="text-xs font-mono text-zinc-500">
+          Showing {activeFilter === "all" ? "all" : activeFilter} entries
+        </div>
+      </div>
+
+      {/* Content Rendering: Releases Mode vs Git Graph Mode */}
+      {viewMode === "releases" ? (
+        <div className="space-y-5">
+          {CAREER_RELEASES.map((rel, idx) => {
+            const isExpanded = expandedReleases[idx] ?? false;
+            const filteredChangelog =
+              activeFilter === "all"
+                ? rel.changelog
+                : rel.changelog.filter((c) => c.type === activeFilter);
+
+            if (filteredChangelog.length === 0 && activeFilter !== "all") {
+              return null;
+            }
+
+            return (
+              <div
+                key={rel.version}
+                className={`rounded-2xl border transition-all duration-300 relative overflow-hidden ${
+                  rel.status === "active"
+                    ? "bg-[#0c0c11]/90 border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.06)]"
+                    : "bg-[#0a0a0e]/80 border-white/10 hover:border-white/20"
+                }`}
+              >
+                {rel.status === "active" && (
+                  <BorderBeam duration={10} rx={16} colorFrom="#8b5cf6" colorTo="#38bdf8" />
+                )}
+
+                {/* Release Card Header */}
+                <div
                   onClick={() => toggleRelease(idx)}
-                  className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white font-mono transition-colors cursor-pointer"
+                  className="p-5 sm:p-6 cursor-pointer select-none flex flex-col md:flex-row md:items-center justify-between gap-4"
                 >
-                  <GitCommit size={13} className="text-violet-400" />
-                  <span>
-                    {isExpanded ? "Hide Changelog" : `View ${rel.changelog.length} Changelog Items`}
-                  </span>
-                  <ChevronDown
-                    size={13}
-                    className={`transition-transform duration-200 ${
-                      isExpanded ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
+                  <div className="space-y-1.5">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-mono text-xs px-2.5 py-0.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20 font-semibold">
+                        {rel.version}
+                      </span>
+                      <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                        {rel.role}
+                      </h2>
+                      {rel.status === "active" && (
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          Live Deployment
+                        </span>
+                      )}
+                    </div>
 
-                {/* Changelog Entries */}
+                    <div className="text-xs sm:text-sm text-zinc-400 flex flex-wrap items-center gap-2">
+                      <span className="font-medium text-white">{rel.company}</span>
+                      {rel.client && (
+                        <>
+                          <span>•</span>
+                          <span className="text-sky-300">Client: {rel.client}</span>
+                        </>
+                      )}
+                      <span>•</span>
+                      <span className="font-mono text-xs text-zinc-500">{rel.branch}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between md:justify-end gap-3">
+                    <span className="text-xs font-mono text-zinc-400">{rel.date}</span>
+                    <div
+                      className={`p-1.5 rounded-lg bg-white/5 text-zinc-400 transition-transform duration-200 ${
+                        isExpanded ? "rotate-180" : ""
+                      }`}
+                    >
+                      <ChevronDown size={14} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Metrics Badges Bar */}
+                <div className="px-5 sm:px-6 pb-4 flex flex-wrap gap-2 border-b border-white/5">
+                  {rel.metrics.map((m) => (
+                    <span
+                      key={m}
+                      className="text-xs px-2.5 py-1 rounded-md bg-white/3 border border-white/5 text-zinc-300 font-mono"
+                    >
+                      {m}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Expandable Changelog Content */}
                 <AnimatePresence>
                   {isExpanded && (
                     <motion.div
@@ -329,24 +475,31 @@ export function ExperienceView() {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.25 }}
-                      className="overflow-hidden"
+                      className="p-5 sm:p-6 bg-black/30 space-y-3"
                     >
-                      <div className="mt-3 pt-3 border-t border-white/5 space-y-2 font-mono text-xs">
-                        {rel.changelog.map((entry, cIdx) => (
+                      <div className="text-xs font-mono text-zinc-500 mb-2 flex items-center justify-between">
+                        <span>Changelog commits ({filteredChangelog.length}):</span>
+                        <span className="text-sky-400 font-mono text-[11px]">
+                          commit {rel.commitHash}
+                        </span>
+                      </div>
+
+                      <div className="space-y-2">
+                        {filteredChangelog.map((c, cIdx) => (
                           <div
                             key={cIdx}
-                            className="p-2.5 rounded-lg bg-black/30 border border-white/5 flex items-start gap-2.5 hover:border-white/10 transition-colors"
+                            className="p-3 rounded-xl bg-white/2 border border-white/5 flex items-start gap-3 hover:bg-white/4 transition-colors"
                           >
                             <span
-                              className={`text-[10px] font-mono uppercase px-1.5 py-0.5 rounded border shrink-0 ${getTagColor(
-                                entry.type,
+                              className={`text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded border shrink-0 mt-0.5 ${getTagColor(
+                                c.type,
                               )}`}
                             >
-                              {entry.type}:{entry.scope}
+                              {c.type}:{c.scope}
                             </span>
-                            <span className="text-zinc-300 font-sans text-xs leading-relaxed">
-                              {entry.description}
-                            </span>
+                            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                              {c.description}
+                            </p>
                           </div>
                         ))}
                       </div>
@@ -354,10 +507,70 @@ export function ExperienceView() {
                   )}
                 </AnimatePresence>
               </div>
-            </motion.div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      ) : (
+        /* Git Graph Visualizer Mode */
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#0c0c11]/90 border border-white/10 space-y-5 font-mono text-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-white/5 text-zinc-400 text-xs">
+            <span className="flex items-center gap-2 text-white">
+              <GitBranch size={13} className="text-violet-400" />
+              <span>Career Git Graph • 4 Release Branches</span>
+            </span>
+            <span className="text-emerald-400">HEAD -&gt; main</span>
+          </div>
+
+          <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-3 sm:before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-linear-to-b before:from-violet-500 before:via-sky-500 before:to-zinc-700">
+            {CAREER_RELEASES.map((rel) => (
+              <div key={rel.version} className="relative group">
+                {/* Commit Dot */}
+                <div
+                  className={`absolute -left-4.75 sm:-left-5.75 top-1.5 w-3.5 h-3.5 rounded-full border-2 transition-all ${
+                    rel.status === "active"
+                      ? "bg-violet-500 border-white shadow-[0_0_12px_rgba(139,92,246,0.8)] scale-110"
+                      : "bg-black border-zinc-500 group-hover:border-sky-400"
+                  }`}
+                />
+
+                <div className="p-4 rounded-xl bg-white/2 border border-white/5 hover:border-violet-500/30 transition-all space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sky-400 font-bold">{rel.commitHash}</span>
+                      <span className="px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/20 text-[11px]">
+                        tag: {rel.version}
+                      </span>
+                      <span className="text-zinc-500 font-mono text-[11px]">({rel.branch})</span>
+                    </div>
+                    <span className="text-zinc-500 text-[11px]">{rel.date}</span>
+                  </div>
+
+                  <div className="text-sm font-semibold text-white">
+                    {rel.role} • <span className="text-zinc-400 font-normal">{rel.company}</span>
+                  </div>
+
+                  <div className="text-xs text-zinc-400 flex flex-wrap gap-2 pt-1">
+                    {rel.changelog.slice(0, 3).map((c, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-0.5 rounded bg-white/3 border border-white/5 text-[11px] text-zinc-300 flex items-center gap-1"
+                      >
+                        <Tag size={10} className="text-violet-400" />
+                        {c.type}:{c.scope}
+                      </span>
+                    ))}
+                    {rel.changelog.length > 3 && (
+                      <span className="text-zinc-500 text-[11px] py-0.5">
+                        +{rel.changelog.length - 3} more
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
