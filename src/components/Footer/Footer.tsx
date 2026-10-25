@@ -1,5 +1,7 @@
 import { socialLinks } from "../../data";
 
+const currentYear = new Date().getFullYear();
+
 export default function Footer() {
   return (
     <footer className="py-12 border-t border-white/5 relative z-10 bg-[#0a0a0c]">
@@ -7,7 +9,7 @@ export default function Footer() {
         <div className="text-white font-bold text-xl tracking-tighter">
           Jatin<span className="text-zinc-500">Rai.</span>
         </div>
-        
+
         <div className="flex items-center gap-4">
           {socialLinks.map((social, idx) => {
             const Icon = social.icon;
@@ -29,7 +31,7 @@ export default function Footer() {
         </div>
 
         <div className="text-[#b1b1b8] text-sm font-medium tracking-wide">
-          &copy; {new Date().getFullYear()} All Rights Reserved.
+          &copy; {currentYear} All Rights Reserved.
         </div>
       </div>
     </footer>

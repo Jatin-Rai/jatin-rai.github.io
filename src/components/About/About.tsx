@@ -21,12 +21,7 @@ export default function About() {
               <p key={index}>{paragraph}</p>
             ))}
             <div className="mt-6">
-              <AnimatedButton
-                as="a"
-                href={resumePdf}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <AnimatedButton as="a" href={resumePdf} target="_blank" rel="noopener noreferrer">
                 Download Resumé <Download size={16} />
               </AnimatedButton>
             </div>
@@ -36,7 +31,9 @@ export default function About() {
             {aboutData.stats.map((stat, idx) => (
               <div key={idx} className="flex flex-col gap-2">
                 <span className="text-3xl font-bold tracking-tight text-white">{stat.value}</span>
-                <span className="text-[0.9rem] text-[#b1b1b8] font-medium uppercase tracking-wider">{stat.label}</span>
+                <span className="text-[0.9rem] text-[#b1b1b8] font-medium uppercase tracking-wider">
+                  {stat.label}
+                </span>
               </div>
             ))}
           </div>

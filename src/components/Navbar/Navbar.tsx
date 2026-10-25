@@ -13,7 +13,7 @@ export default function Navbar() {
     if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname);
     }
-    
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };

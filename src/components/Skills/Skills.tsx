@@ -10,10 +10,10 @@ export default function Skills() {
             Skills
           </h2>
         </div>
-        
+
         <div className="flex flex-col gap-12">
           {skillsData.map((category, idx) => (
-            <motion.div 
+            <motion.div
               key={category.category}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -21,12 +21,18 @@ export default function Skills() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="flex flex-col"
             >
-              <h3 className="mb-5 text-white font-medium text-[1.2rem] tracking-tight">{category.category}</h3>
+              <h3 className="mb-5 text-white font-medium text-[1.2rem] tracking-tight">
+                {category.category}
+              </h3>
               <div className="flex flex-wrap gap-3">
                 {category.items.map((skill) => (
                   <motion.div
                     key={skill.name}
-                    whileHover={{ y: -2, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)" }}
+                    whileHover={{
+                      y: -2,
+                      backgroundColor: "rgba(255,255,255,0.1)",
+                      borderColor: "rgba(255,255,255,0.2)",
+                    }}
                     className="inline-flex items-center gap-2 bg-white/5 border border-white/5 text-white px-5 py-2.5 rounded-full text-[0.9rem] font-medium transition-colors cursor-default"
                   >
                     <skill.icon size={18} className="text-[#b1b1b8]" />
